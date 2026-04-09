@@ -7,6 +7,13 @@ import org.testng.Reporter;
 
 public class TestResultLogger implements ITestListener {
 
+    private static final long TEST_START_DELAY_MS = Long.getLong("test.delay.ms", 750L);
+
+    @Override
+    public void onTestStart(ITestResult result) {
+        pauseBetweenTests();
+    }
+
     @Override
     public void onTestSuccess(ITestResult result) {
         Reporter.log("PASS - " + getDisplayName(result), true);
@@ -42,5 +49,18 @@ public class TestResultLogger implements ITestListener {
 
     private String getDisplayName(ITestResult result) {
         return result.getTestClass().getName() + "." + result.getMethod().getMethodName();
+    }
+
+    private void pauseBetweenTests() {
+        if (TEST_START_DELAY_MS <= 0) {
+            return;
+        }
+
+        try {
+            Thread.sleep(TEST_START_DELAY_MS);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            Reporter.log("Test delay interrupted.", true);
+        }
     }
 }
