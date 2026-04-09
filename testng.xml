@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Netflix Test Suite">
+
+    <test name="All Netflix Tests">
+        <classes>
+            <class name="tests.HomePageTests"/>
+            <class name="tests.LoginPageTests"/>
+            <class name="tests.LoginValidationTests"/>
+            <class name="tests.NavigationTests"/>
+            <class name="tests.HelpCenterTests"/>
+            <class name="tests.LanguageTests"/>
+            <class name="tests.FooterTests"/>
+            <class name="tests.UIResponsivenessTests"/>
+        </classes>
+    </test>
+
+</suite>
