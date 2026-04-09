@@ -17,6 +17,7 @@ public class HomePageTests {
 
     @BeforeMethod
     public void setUp() {
+        System.out.println("[HomePageTests] setUp");
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
@@ -27,6 +28,7 @@ public class HomePageTests {
     // 1. Title contains Netflix
     @Test
     public void verifyHomePageTitle() {
+        System.out.println("[HomePageTests] verifyHomePageTitle");
         String title = driver.getTitle();
         Assert.assertTrue(title.toLowerCase().contains("netflix"));
     }
@@ -34,12 +36,14 @@ public class HomePageTests {
     // 2. URL is correct
     @Test
     public void verifyHomePageUrl() {
+        System.out.println("[HomePageTests] verifyHomePageUrl");
         Assert.assertTrue(driver.getCurrentUrl().contains("netflix.com"));
     }
 
     // 3. Sign In button exists
     @Test
     public void verifySignInButtonExists() {
+        System.out.println("[HomePageTests] verifySignInButtonExists");
         boolean exists = driver.getPageSource().toLowerCase().contains("sign in");
         Assert.assertTrue(exists);
     }
@@ -47,6 +51,7 @@ public class HomePageTests {
     // 4. Page contains main call-to-action text
     @Test
     public void verifyMainContentExists() {
+        System.out.println("[HomePageTests] verifyMainContentExists");
         boolean hasContent = driver.getPageSource().toLowerCase().contains("watch")
                 || driver.getPageSource().toLowerCase().contains("unlimited")
                 || driver.getPageSource().toLowerCase().contains("movies");
@@ -56,12 +61,14 @@ public class HomePageTests {
     // 5. Page loads after refresh
     @Test
     public void verifyPageRefresh() {
+        System.out.println("[HomePageTests] verifyPageRefresh");
         driver.navigate().refresh();
         Assert.assertTrue(driver.getTitle().toLowerCase().contains("netflix"));
     }
 
     @AfterMethod
     public void tearDown() {
+        System.out.println("[HomePageTests] tearDown");
         if (driver != null) {
             driver.quit();
         }

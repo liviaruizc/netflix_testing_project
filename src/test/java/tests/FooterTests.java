@@ -16,6 +16,7 @@ public class FooterTests {
 
     @BeforeMethod
     public void setUp() {
+        System.out.println("[FooterTests] setUp");
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
@@ -25,6 +26,7 @@ public class FooterTests {
 
     @Test
     public void verifyFooterExists() {
+        System.out.println("[FooterTests] verifyFooterExists");
         String page = driver.getPageSource().toLowerCase();
         boolean hasFooter = page.contains("questions? contact us")
                 || page.contains("faq")
@@ -34,30 +36,35 @@ public class FooterTests {
 
     @Test
     public void verifyFAQLinkTextExists() {
+        System.out.println("[FooterTests] verifyFAQLinkTextExists");
         String page = driver.getPageSource().toLowerCase();
         Assert.assertTrue(page.contains("faq"));
     }
 
     @Test
     public void verifyInvestorRelationsTextExists() {
+        System.out.println("[FooterTests] verifyInvestorRelationsTextExists");
         String page = driver.getPageSource().toLowerCase();
         Assert.assertTrue(page.contains("investor relations"));
     }
 
     @Test
     public void verifyPrivacyTextExists() {
+        System.out.println("[FooterTests] verifyPrivacyTextExists");
         String page = driver.getPageSource().toLowerCase();
         Assert.assertTrue(page.contains("privacy"));
     }
 
     @Test
     public void verifySpeedTestTextExists() {
+        System.out.println("[FooterTests] verifySpeedTestTextExists");
         String page = driver.getPageSource().toLowerCase();
         Assert.assertTrue(page.contains("speed test") || page.contains("cookie preferences"));
     }
 
     @AfterMethod
     public void tearDown() {
+        System.out.println("[FooterTests] tearDown");
         if (driver != null) {
             driver.quit();
         }

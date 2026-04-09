@@ -17,6 +17,7 @@ public class NavigationTests {
 
     @BeforeMethod
     public void setUp() {
+        System.out.println("[NavigationTests] setUp");
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
@@ -27,6 +28,7 @@ public class NavigationTests {
     // 1. Navigate to login page
     @Test
     public void verifyNavigationToLoginPage() {
+        System.out.println("[NavigationTests] verifyNavigationToLoginPage");
         driver.findElement(By.linkText("Sign In")).click();
         Assert.assertTrue(driver.getCurrentUrl().contains("login"));
     }
@@ -34,6 +36,7 @@ public class NavigationTests {
     // 2. Navigate back using logo
     @Test
     public void verifyLogoNavigationToHome() {
+        System.out.println("[NavigationTests] verifyLogoNavigationToHome");
         driver.get("https://www.netflix.com/login");
         driver.findElement(By.cssSelector("a[href='/']")).click();
 
@@ -43,6 +46,7 @@ public class NavigationTests {
     // 3. FAQ section expands
     @Test
     public void verifyFAQSectionExpands() {
+        System.out.println("[NavigationTests] verifyFAQSectionExpands");
         driver.findElement(By.xpath("//*[contains(text(),'What is Netflix?')]")).click();
 
         boolean expanded = driver.getPageSource().toLowerCase().contains("watch anywhere")
@@ -54,12 +58,14 @@ public class NavigationTests {
     // 4. Page title contains Netflix
     @Test
     public void verifyPageTitleContainsNetflix() {
+        System.out.println("[NavigationTests] verifyPageTitleContainsNetflix");
         Assert.assertTrue(driver.getTitle().toLowerCase().contains("netflix"));
     }
 
     // 5. Refresh keeps user on homepage
     @Test
     public void verifyPageRefresh() {
+        System.out.println("[NavigationTests] verifyPageRefresh");
         driver.navigate().refresh();
 
         Assert.assertTrue(driver.getCurrentUrl().equals("https://www.netflix.com/"));
@@ -67,6 +73,7 @@ public class NavigationTests {
 
     @AfterMethod
     public void tearDown() {
+        System.out.println("[NavigationTests] tearDown");
         if (driver != null) {
             driver.quit();
         }

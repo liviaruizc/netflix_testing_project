@@ -17,6 +17,7 @@ public class UIResponsivenessTests {
 
     @BeforeMethod
     public void setUp() {
+        System.out.println("[UIResponsivenessTests] setUp");
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
@@ -26,6 +27,7 @@ public class UIResponsivenessTests {
     // 1. Desktop size
     @Test
     public void verifyDesktopView() {
+        System.out.println("[UIResponsivenessTests] verifyDesktopView");
         driver.manage().window().setSize(new Dimension(1920, 1080));
         Assert.assertTrue(driver.getTitle().toLowerCase().contains("netflix"));
     }
@@ -33,6 +35,7 @@ public class UIResponsivenessTests {
     // 2. Tablet size
     @Test
     public void verifyTabletView() {
+        System.out.println("[UIResponsivenessTests] verifyTabletView");
         driver.manage().window().setSize(new Dimension(768, 1024));
         Assert.assertTrue(driver.getTitle().toLowerCase().contains("netflix"));
     }
@@ -40,6 +43,7 @@ public class UIResponsivenessTests {
     // 3. Mobile size
     @Test
     public void verifyMobileView() {
+        System.out.println("[UIResponsivenessTests] verifyMobileView");
         driver.manage().window().setSize(new Dimension(375, 812));
         Assert.assertTrue(driver.getTitle().toLowerCase().contains("netflix"));
     }
@@ -47,6 +51,7 @@ public class UIResponsivenessTests {
     // 4. Resize keeps page functional
     @Test
     public void verifyResizeKeepsPageLoaded() {
+        System.out.println("[UIResponsivenessTests] verifyResizeKeepsPageLoaded");
         driver.manage().window().setSize(new Dimension(500, 800));
         driver.manage().window().setSize(new Dimension(1200, 900));
 
@@ -56,6 +61,7 @@ public class UIResponsivenessTests {
     // 5. Page reload after resize
     @Test
     public void verifyReloadAfterResize() {
+        System.out.println("[UIResponsivenessTests] verifyReloadAfterResize");
         driver.manage().window().setSize(new Dimension(375, 812));
         driver.navigate().refresh();
 
@@ -64,6 +70,7 @@ public class UIResponsivenessTests {
 
     @AfterMethod
     public void tearDown() {
+        System.out.println("[UIResponsivenessTests] tearDown");
         if (driver != null) {
             driver.quit();
         }
